@@ -1,13 +1,13 @@
 package com.maller.microservice_demo.repository;
 
-import java.util.Optional;
-
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import com.maller.microservice_demo.model.entity.UserEntity;
 
 public interface UserRepo extends CrudRepository<UserEntity, Long> {
 
-	public Optional<String> findEncryptedPasswordById(Long id);
+	@Query("select encryptedPassword from UserEntity where id = ?1")
+	public String findEncryptedPasswordById(Long id);
 	
 }

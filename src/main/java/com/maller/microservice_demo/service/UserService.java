@@ -49,7 +49,9 @@ public class UserService {
 			UserEntity userEntity = mapper.map(userDAO, UserEntity.class);
 			userEntity = userRepo.save(userEntity);
 		
-			return mapper.map(userEntity, UserDAO.class);
+			userDAO = mapper.map(userEntity, UserDAO.class);
+			userDAO.setEncryptedPassword(null);
+			return userDAO;
 		} catch(Exception ex) {
 			return null;
 		}
@@ -62,6 +64,6 @@ public class UserService {
 
 	
 	public String getEncryptedPasswordById(long id) {
-		return userRepo.findEncryptedPasswordById(id).orElse(null);
+		return userRepo.findEncryptedPasswordById(id);
 	}
 }
