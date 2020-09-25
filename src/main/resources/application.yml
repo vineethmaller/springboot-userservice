@@ -4,6 +4,7 @@ server:
 ---
 spring:
   profiles: dev
+  
   application:
     name: ws_user
   datasource:
@@ -13,7 +14,7 @@ spring:
     password: password
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect 
- 
+
     
 eureka:
   client:

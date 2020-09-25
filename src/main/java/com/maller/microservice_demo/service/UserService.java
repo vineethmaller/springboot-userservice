@@ -29,12 +29,16 @@ public class UserService {
 	
 	public UserDAO getUser(long id) {
 		UserEntity userEntity = userRepo.findById(id).orElse(new UserEntity());
-		return mapper.map(userEntity, UserDAO.class);
+		UserDAO userDAO = mapper.map(userEntity, UserDAO.class);
+		userDAO.setEncryptedPassword(null);
+		return userDAO;
 	}
 	
 	public List<UserDAO> getAllUsers() {
-		List<UserEntity> users = (List<UserEntity>) userRepo.findAll();
-		return users.stream().map(user -> mapper.map(user, UserDAO.class)).collect(Collectors.toList());
+		List<UserEntity> userEntityList = (List<UserEntity>) userRepo.findAll();
+		List<UserDAO> users = userEntityList.stream().map(user -> mapper.map(user, UserDAO.class)).collect(Collectors.toList());
+		users.stream().forEach(user -> user.setEncryptedPassword(null));
+		return users;
 	}
 	
 	public UserDAO addUser(UserDAO userDAO) {
@@ -56,4 +60,8 @@ public class UserService {
 			userRepo.deleteById(id);
 	}
 
+	
+	public String getEncryptedPasswordById(long id) {
+		return userRepo.findEncryptedPasswordById(id).orElse(null);
+	}
 }

@@ -55,6 +55,8 @@ public class UserController {
 				consumes = { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON }, 
 				produces = { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public ResponseEntity<UserDAO> createUser(@Valid @RequestBody UserDAO user) {
+		String password = user.getEncryptedPassword();
+		user.setEncryptedPassword(null);
 		UserDAO retreivedUser;
 		
 		if(user.getId() != 0)
@@ -64,7 +66,7 @@ public class UserController {
 		if(retreivedUser.equals(user))
 			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		
-			
+		user.setEncryptedPassword(password);
 		retreivedUser = userService.addUser(user);
 		if(retreivedUser != null)
 			return new ResponseEntity<>(retreivedUser, HttpStatus.CREATED);
@@ -76,6 +78,8 @@ public class UserController {
 				consumes = { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON }, 
 				produces = { MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public ResponseEntity<UserDAO> updateUser(@Valid @RequestBody UserDAO user) {
+		String password = user.getEncryptedPassword();
+		user.setEncryptedPassword(null);
 		if(user.getId() == 0) 
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		
@@ -83,8 +87,9 @@ public class UserController {
 		if(retreivedUser.equals(new UserDAO()))
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
-		user = userService.addUser(user);
-		return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
+		user.setEncryptedPassword(password);
+		retreivedUser = userService.addUser(user);
+		return new ResponseEntity<>(retreivedUser, HttpStatus.ACCEPTED);
 	}
 	
 	
@@ -94,5 +99,18 @@ public class UserController {
 	public HttpStatus deleteUser(@PathVariable long id) {
 		userService.removeUser(id);
 		return HttpStatus.OK;
+	}
+	
+	
+	@GetMapping(path = "{id}/password", 
+					consumes = { MediaType.APPLICATION_JSON }, 
+					produces = { MediaType.APPLICATION_JSON })
+	public ResponseEntity<String> getUserEncryptedPassword(@PathVariable long id) {
+		String encryptedPassword = userService.getEncryptedPasswordById(id);
+		
+		if(encryptedPassword == null)
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		return new ResponseEntity<>(encryptedPassword, HttpStatus.FOUND);
 	}
 }
