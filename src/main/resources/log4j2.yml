@@ -1,0 +1,34 @@
+Configuration:
+  status: debug
+  
+  appenders:
+    Console:
+      name: ConsoleLogger
+      PatternLayout:
+        Pattern: "[%-5level] - %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
+        
+    RollingFile:
+      name: RollingFileAppender
+      fileName: "target/logs/app.log"
+      filePattern: "logs/$${date:yyyy-MM}/app-%d{dd}-%i.log.gz"
+      PatternLayout: 
+        Pattern: "[%-5level] - %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
+      Policies:
+        TimeBasedTriggeringPolicy:
+          interval: 1
+      DefaultRollOverStrategy: 
+        max: 10
+        
+  Loggers:
+    logger:
+      - name: com.maller.microservice_demo
+        level: info
+        additivity: false
+        AppenderRef:
+          - ref: ConsoleLogger
+          - ref: RollingFileLogger
+          
+    Root:
+      level: debug
+      AppenderRef: 
+        ref: ConsoleLogger          
