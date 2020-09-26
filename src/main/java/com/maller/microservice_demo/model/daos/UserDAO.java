@@ -32,6 +32,14 @@ public class UserDAO implements Serializable {
 	String email;
 	
 	transient String encryptedPassword;
+
+	public UserDAO(UserDAO user) {
+		this.id = user.getId(); 
+		this.firstName = user.getFirstName(); 
+		this.lastName = user.getLastName();
+		this.email = user.getEmail();
+		this.encryptedPassword = user.getEncryptedPassword();
+	}
 	
 	@Override
 	public String toString() {
@@ -44,5 +52,4 @@ public class UserDAO implements Serializable {
 		
 		return data.toString();
 	}
-	
 }

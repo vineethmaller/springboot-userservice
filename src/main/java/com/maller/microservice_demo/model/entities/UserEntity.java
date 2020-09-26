@@ -37,4 +37,12 @@ public class UserEntity {
 	String email;
 	
 	String encryptedPassword;
+	
+	public UserEntity(UserEntity user) {
+		this.id = user.getId(); 
+		this.firstName = user.getFirstName(); 
+		this.lastName = user.getLastName();
+		this.email = user.getEmail();
+		this.encryptedPassword = user.getEncryptedPassword();
+	}
 }
