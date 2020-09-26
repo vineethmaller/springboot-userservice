@@ -62,10 +62,6 @@ public class UserController {
 		if(user.getId() != 0)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		
-		retreivedUser = userService.getUser(user.getId());
-		if(retreivedUser.equals(user))
-			return new ResponseEntity<>(HttpStatus.CONFLICT);
-		
 		user.setEncryptedPassword(password);
 		retreivedUser = userService.addUser(user);
 		if(retreivedUser != null)
@@ -89,6 +85,8 @@ public class UserController {
 		
 		user.setEncryptedPassword(password);
 		retreivedUser = userService.addUser(user);
+		if(retreivedUser == null)
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		return new ResponseEntity<>(retreivedUser, HttpStatus.ACCEPTED);
 	}
 	
