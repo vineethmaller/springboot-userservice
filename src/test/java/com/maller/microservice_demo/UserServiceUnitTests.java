@@ -52,9 +52,9 @@ class UserServiceUnitTests {
 		userDAOList = new TreeMap<>();
 		userEntityList = new TreeMap<>();
 		
-		userDAOList.put((long)1, new UserDAO(1, "Vineeth", "Maller", "vinnethmaller@mgail.com", null));
-		userDAOList.put((long)2, new UserDAO(2, "Divya", "Pai", "divyapai@gmail.com", null));
-		userDAOList.put((long)3, new UserDAO(3, "Sankalp", "Gupta", "sankalpgupta@gmail.com", null));
+		userDAOList.put((long)1, new UserDAO(0, "Tom", "Hanks", "wilson@houston.com", null));
+		userDAOList.put((long)2, new UserDAO(0, "James", "Bond", "worstspyinhistory@mi6.uk.gov", null));
+		userDAOList.put((long)3, new UserDAO(0, "Matthew", "McConaughey", "ihaveanoscar@texan.com", null));
 		
 		for(long i=1;i<4;i++)
 			userEntityList.put(i, mapper.map(userDAOList.get(i), UserEntity.class));
