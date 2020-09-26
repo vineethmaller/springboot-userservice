@@ -1,16 +1,19 @@
 server:
-  port: ${PORT:0}
+  port: ${PORT:8080}
+
 
 eureka:
   client:
     enabled: false
-
-
-    
-    
-      
-
-
-
-  
-  
+---
+spring:
+  profiles: dev
+  application:
+    name: ws_user
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
