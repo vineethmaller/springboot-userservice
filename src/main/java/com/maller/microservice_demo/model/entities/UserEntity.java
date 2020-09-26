@@ -1,4 +1,4 @@
-package com.maller.microservice_demo.model.entity;
+package com.maller.microservice_demo.model.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.maller.microservice_demo.controller;
+package com.maller.microservice_demo.controllers;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.maller.microservice_demo.model.dao.UserDAO;
-import com.maller.microservice_demo.service.UserService;
+import com.maller.microservice_demo.model.daos.UserDAO;
+import com.maller.microservice_demo.services.UserService;
 
 
 @RestController

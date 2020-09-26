@@ -1,4 +1,4 @@
-package com.maller.microservice_demo.service;
+package com.maller.microservice_demo.services;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.maller.microservice_demo.model.dao.UserDAO;
-import com.maller.microservice_demo.model.entity.UserEntity;
-import com.maller.microservice_demo.repository.UserRepo;
+import com.maller.microservice_demo.model.daos.UserDAO;
+import com.maller.microservice_demo.model.entities.UserEntity;
+import com.maller.microservice_demo.repositories.UserRepo;
 
 @Service
 public class UserService {

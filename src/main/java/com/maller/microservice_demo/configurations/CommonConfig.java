@@ -1,4 +1,4 @@
-package com.maller.microservice_demo.configuration;
+package com.maller.microservice_demo.configurations;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

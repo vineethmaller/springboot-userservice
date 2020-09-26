@@ -1,4 +1,4 @@
-package com.maller.microservice_demo.model.dao;
+package com.maller.microservice_demo.model.daos;
 
 import java.io.Serializable;
 

@@ -1,9 +1,9 @@
-package com.maller.microservice_demo.repository;
+package com.maller.microservice_demo.repositories;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import com.maller.microservice_demo.model.entity.UserEntity;
+import com.maller.microservice_demo.model.entities.UserEntity;
 
 public interface UserRepo extends CrudRepository<UserEntity, Long> {
 
