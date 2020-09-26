@@ -5,12 +5,17 @@ import java.io.Serializable;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 
-
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserDAO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -26,5 +31,18 @@ public class UserDAO implements Serializable {
 	@Email
 	String email;
 	
-	String encryptedPassword;
+	transient String encryptedPassword;
+	
+	@Override
+	public String toString() {
+		StringBuilder data = new StringBuilder();
+		data.append("{ id : " + id);
+		data.append(", firstName : " + firstName);
+		data.append(", lastName : " + lastName);
+		data.append(", email: " + email);
+		data.append(" }");
+		
+		return data.toString();
+	}
+	
 }
