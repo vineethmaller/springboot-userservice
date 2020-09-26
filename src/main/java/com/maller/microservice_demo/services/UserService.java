@@ -17,14 +17,13 @@ public class UserService {
 	
 	UserRepo userRepo;
 	ModelMapper mapper;
-	
-	@Autowired
 	PasswordEncoder encoder;
 	
 	@Autowired
-	public UserService(UserRepo userRepo, ModelMapper mapper) {
+	public UserService(UserRepo userRepo, ModelMapper mapper, PasswordEncoder encoder) {
 		this.userRepo = userRepo;
 		this.mapper = mapper;
+		this.encoder = encoder;
 	}
 	
 	public UserDAO getUser(long id) {
@@ -58,11 +57,9 @@ public class UserService {
 	}
 	
 	public void removeUser(long id) {
-		if(userRepo.findById(id).orElse(null) != null)
-			userRepo.deleteById(id);
+		userRepo.deleteById(id);
 	}
 
-	
 	public String getEncryptedPasswordById(long id) {
 		return userRepo.findEncryptedPasswordById(id);
 	}
