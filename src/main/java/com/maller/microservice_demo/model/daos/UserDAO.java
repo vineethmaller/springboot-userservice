@@ -31,7 +31,7 @@ public class UserDAO implements Serializable {
 	@Email
 	String email;
 	
-	transient String encryptedPassword;
+	String encryptedPassword;
 
 	public UserDAO(UserDAO user) {
 		this.id = user.getId(); 
