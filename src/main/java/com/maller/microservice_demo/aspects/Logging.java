@@ -38,7 +38,7 @@ public class Logging {
 	@AfterReturning(pointcut = "controllerClassMethods()", returning = "result")
 	public void logAfterMethodExecution(JoinPoint jp, Object result) {
 		logger = LogManager.getLogger(jp.getClass());
-		String message = String.format("Method: %1$s - Status: SUCCESS - Return: %2$s", jp.getSignature().getName(), result.toString());
+		String message = String.format("Method: %1$s - Status: SUCCESS - Return: %2$s", jp.getSignature().getName(), result);
 		logger.log(Level.INFO, message);
 	}
 	
