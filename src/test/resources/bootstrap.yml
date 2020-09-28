@@ -1,0 +1,8 @@
+spring:    
+  cloud:
+    bus:
+      enabled: false
+    config:
+      discovery:
+        enabled: false
+      enabled: false
