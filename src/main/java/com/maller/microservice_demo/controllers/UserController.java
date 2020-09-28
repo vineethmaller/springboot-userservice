@@ -15,7 +15,7 @@ import com.maller.microservice_demo.services.UserService;
 
 
 @RestController
-@RequestMapping("users/")
+@RequestMapping("users")
 public class UserController {
 	
 	UserService userService;
